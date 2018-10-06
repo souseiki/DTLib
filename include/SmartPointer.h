@@ -1,9 +1,11 @@
 #ifndef SMARTPOINTER_H
 #define SMARTPOINTER_H
+
+#include "Object.h"
 namespace DTLib
 {
 template <typename T>
-class SmartPointer 
+class SmartPointer : public Object
 {
 protected:
     T* m_pointer;

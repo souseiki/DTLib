@@ -9,14 +9,12 @@ namespace DTLib
 void* Object::operator new(size_t size) throw()
 {
 
-    cout << "Object::operator new" <<endl;
     return malloc(size);
 }
 
 
 void Object::operator delete(void* p)
 {
-    cout << "Object::operator delete" <<endl;
     free(p);
 }
 
