@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Exception.h"
 #include "SmartPointer.h"
+#include "List.h"
+#include "SeqList.h"
 
 using namespace std;
 using namespace DTLib;
@@ -8,8 +10,6 @@ using namespace DTLib;
 
 int main()
 {
-    InvalidOperationException* e = new InvalidOperationException();
-
-    delete e;
+    SeqList<int>* l;
     return 0;
 }
