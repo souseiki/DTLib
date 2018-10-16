@@ -28,7 +28,7 @@ public:
 
         if( ret )
         {
-            for(int p = m_length-1; p>i; p--)
+            for(int p = m_length-1; p>=i; p--)
             {
                 m_array[p+1] = m_array[p];
             }
@@ -41,7 +41,7 @@ public:
     bool remove(int i)
     {
         bool ret = (i>=0) && (i < m_length);
-        if ( ret ):
+        if (ret)
         {
             for(int p=i; p<m_length-1; p++)
             {
@@ -90,7 +90,7 @@ public:
         }
         else
         {
-            THROW_EXCEPTION(IndexOutOfBoundsException, "Parameter i is invalid ...")
+            THROW_EXCEPTION(IndexOutOfBoundsException, "Parameter i is invalid ...");
         }
     }
     T operator[] (int i) const

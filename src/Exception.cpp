@@ -22,9 +22,9 @@ namespace DTLib
 			{
 				m_location = strcpy(m_location, file);
 
-				m_location = strcpy(m_location, ":");
+				m_location = strcat(m_location, ":");
 
-				m_location = strcpy(m_location, sl);
+				m_location = strcat(m_location, sl);
 			}
 
 		}
