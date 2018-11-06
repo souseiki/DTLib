@@ -5,6 +5,7 @@
 #include "SeqList.h"
 #include "StaticList.h"
 #include "DynamicList.h"
+#include "StaticArray.h"
 
 using namespace std;
 using namespace DTLib;
@@ -12,33 +13,24 @@ using namespace DTLib;
 
 int main()
 {
-    DynamicList<int> l(5);
-
-    for (int i=0; i<l.capacity(); i++)
+    StaticArray<int, 5> sl;
+    for (int i=0; i< sl.length(); i++)
     {
-        l.insert(0,i);
+        sl[i] = i + i;
+    }
+    for(int i=0; i< sl.length(); i++)
+    {
+        cout << sl[i] << endl;
+    }
+    StaticArray<int, 5> s2;
+    s2 = sl;
+
+    for(int i=0; i< s2.length(); i++)
+    {
+        cout << s2[i] << endl;
     }
 
-    
-    for (int i=0; i<l.length(); i++)
-    {
-        std::cout << l[i] << std::endl;
-    }
 
-    l[0] *= l[0];
-    for (int i=0; i<l.length(); i++)
-    {
-        std::cout << l[i] << std::endl;
-    }
-    // try
-    // {
-    //     l[5] = 5;
-    // }
-    // catch (const Exception& e)
-    // {
-    //     cout << e.message() << endl;
-    //     cout << e.location() << endl;
-    // }
-
+    s2[6] = 100;
     return 0;
 }
