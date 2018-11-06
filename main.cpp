@@ -27,7 +27,7 @@ int main()
     DynamicArray<int> s2(10);
     s2 = s1;
     
-    s2.resize(3);
+    s2.resize(8);
 
     for(int i=0; i<s2.length(); i++)
     {
