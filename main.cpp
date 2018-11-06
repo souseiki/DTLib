@@ -6,31 +6,34 @@
 #include "StaticList.h"
 #include "DynamicList.h"
 #include "StaticArray.h"
-
+#include "DynamicArray.h"
 using namespace std;
 using namespace DTLib;
 
 
 int main()
 {
-    StaticArray<int, 5> sl;
-    for (int i=0; i< sl.length(); i++)
+    DynamicArray<int> s1(5);
+    for(int i=0; i<s1.length(); i++)
     {
-        sl[i] = i + i;
+        s1[i] = i*i;
     }
-    for(int i=0; i< sl.length(); i++)
-    {
-        cout << sl[i] << endl;
-    }
-    StaticArray<int, 5> s2;
-    s2 = sl;
 
-    for(int i=0; i< s2.length(); i++)
+    for(int i=0; i<s1.length(); i++)
+    {
+        cout << s1[i] << endl;
+    }
+
+    DynamicArray<int> s2(10);
+    s2 = s1;
+    
+    s2.resize(3);
+
+    for(int i=0; i<s2.length(); i++)
     {
         cout << s2[i] << endl;
     }
+    s2[4] = 100;
 
-
-    s2[6] = 100;
     return 0;
 }
