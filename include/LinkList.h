@@ -50,8 +50,22 @@ protected:
         Node* next;
     };
 
-    mutable Node m_header;
+    mutable struct: public Object
+    {
+        char reserved[sizeof(T)];
+        Node* next;
+    } m_header;
     int  m_length;
+
+    Node* position(int i) const
+    {
+        Node* ret = reinterpret_cast<Node*>(&m_header);
+        for(int p=0; p<i; p++)
+        {
+            ret = ret->next;
+        }
+        return ret;
+    }
 
 public:
     LinksList()
@@ -68,11 +82,7 @@ public:
             Node* node = new Node();
             if (node != NULL)
             {
-                Node* current = &m_header; 
-                for(int p=0; p<i; p++)
-                {
-                    current = current->next;
-                }
+                Node* current = position(i); 
                 node->value = e;
                 node->next = current->next;
                 current->next = node;
@@ -91,12 +101,7 @@ public:
         bool ret = ((0 <= i) && (i <= m_length));
         if( ret )
         {
-            Node* current = &m_header;
-
-            for(int p=0; p < i; p++)
-            {
-                current = current->next;
-            }
+            Node* current = position(i); 
             Node* to_del = current->next;
             current->next = to_del->next;
             delete to_del;
@@ -110,14 +115,7 @@ public:
         bool ret = ((0 <= i) && (i <= m_length));
         if( ret )
         {
-            Node* current = &m_header;
-
-            for(int p=0; p < i; p++)
-            {
-                current = current->next;
-            }
-            
-            current->next->value = e;
+            position(i)->next->value = e;
         }
         return ret;      
     }
@@ -140,14 +138,8 @@ public:
     {
         bool ret = ((0 <= i) && (i <= m_length));
         if( ret )
-        {
-            Node* current = &m_header;
-            for(int p=0; p < i; p++)
-            {
-                current = current->next;
-            }
-            
-            e = current->next->value;
+        {            
+            e = position(i)->next->value;
         }
         return ret;  
     }
