@@ -22,6 +22,7 @@ int main()
         lst.set(0, i*i);
     }
 
+    cout << "find: " << lst.find(9) << endl;
     for(int i=0; i<lst.length(); i++)
     {
         int a = - 1;

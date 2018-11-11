@@ -27,12 +27,6 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-
-// TODO:
-// 理解删除等操作指针偏移的原理
-//理解头结点的作用，如果没有需要怎样改？
-
-
 #ifndef LINK_LIST_H
 #define LINK_LIST_H
 
@@ -147,6 +141,28 @@ public:
     int length() const
     {
         return m_length;
+    }
+
+
+    int find(const T& e) const
+    {
+        int ret = -1;
+        int i = 0;
+        Node* node = m_header.next;
+        while(node)
+        {
+            if (node->value == e)
+            {
+                ret = i;
+                break;
+            }
+            else
+            {
+                i++;
+                node = node->next;
+            }
+        }
+        return ret;
     }
 
     void clear()
