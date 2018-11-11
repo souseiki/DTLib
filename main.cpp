@@ -19,22 +19,13 @@ int main()
     for(int i=0; i< 5; i++)
     {
         lst.insert(0, i);
-        lst.set(0, i*i);
     }
 
-    cout << "find: " << lst.find(9) << endl;
-    for(int i=0; i<lst.length(); i++)
+    for(lst.move(0); !lst.end(); lst.next())
     {
-        int a = - 1;
-        lst.get(i, a);
-        std::cout << a << std::endl;
+        cout << lst.current() << endl;
     }
 
-    lst.remove(2);
-    for(int i=0; i<lst.length(); i++)
-    {
-        std::cout << lst.get(i) << std::endl;
-    }
 
     return 0;
 }

@@ -49,7 +49,10 @@ protected:
         char reserved[sizeof(T)];
         Node* next;
     } m_header;
+
     int  m_length;
+    int m_step;
+    Node* m_current;
 
     Node* position(int i) const
     {
@@ -61,11 +64,23 @@ protected:
         return ret;
     }
 
+    virtual Node* create()
+    {
+        return new Node();
+    }
+    virtual void destory(Node* pn)
+    {
+        delete pn;
+    }
+
+
 public:
     LinksList()
     {
         m_header.next = NULL;
         m_length = 0;
+        m_step = 1;
+        m_current = NULL;
     }
 
     bool insert(int i, const T& e)
@@ -73,7 +88,7 @@ public:
         bool ret = ((i >= 0) && (i <= m_length));
         if( ret )
         {
-            Node* node = new Node();
+            Node* node = create();
             if (node != NULL)
             {
                 Node* current = position(i); 
@@ -98,7 +113,7 @@ public:
             Node* current = position(i); 
             Node* to_del = current->next;
             current->next = to_del->next;
-            delete to_del;
+            destory(to_del);
             m_length --;
         }
         return ret;
@@ -165,13 +180,54 @@ public:
         return ret;
     }
 
+
+    bool move(int i, int step = 1)
+    {
+        bool ret = (0 <= i) && (i <= m_length) && (step > 0);
+        if (ret)
+        {
+            m_current = position(i)->next;
+            m_step = step;
+        }
+        return ret;
+    }
+
+    bool end()
+    {
+        return (m_current == NULL);
+    }
+
+
+    T current()
+    {
+        if(!end())
+        {
+            return m_current->value;
+        }
+        else
+        {
+            THROW_EXCEPTION(InvalidOperationException, "No value at current position...");
+        }
+    }
+
+    bool next()
+    {
+        int i=0;
+        while( (i < m_step) && !end() )
+        {
+            m_current = m_current->next;
+            i ++;
+        }
+        return (i == m_step);
+    }
+
     void clear()
     {
         while(m_header.next)
         {
             Node* to_del = m_header.next;
             m_header.next = to_del->next;
-            delete to_del;
+            destory(to_del);
         }
         m_length = 0;
     }
