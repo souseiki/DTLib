@@ -8,14 +8,16 @@
 #include "StaticArray.h"
 #include "DynamicArray.h"
 #include "LinkList.h"
+#include "StaticLinkList.h"
 
 using namespace std;
 using namespace DTLib;
 
 
+
 int main()
 {
-    LinksList<int> lst;
+    LinkList<int> lst;
     for(int i=0; i< 5; i++)
     {
         lst.insert(0, i);

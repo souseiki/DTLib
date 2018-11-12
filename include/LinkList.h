@@ -35,7 +35,7 @@
 namespace DTLib
 {
 template <typename T>
-class LinksList: public List<T>
+class LinkList: public List<T>
 {
 protected:
     struct Node : public Object
@@ -68,14 +68,14 @@ protected:
     {
         return new Node();
     }
-    virtual void destory(Node* pn)
+    virtual void destroy(Node* pn)
     {
         delete pn;
     }
 
 
 public:
-    LinksList()
+    LinkList()
     {
         m_header.next = NULL;
         m_length = 0;
@@ -113,7 +113,7 @@ public:
             Node* current = position(i); 
             Node* to_del = current->next;
             current->next = to_del->next;
-            destory(to_del);
+            destroy(to_del);
             m_length --;
         }
         return ret;
@@ -227,12 +227,12 @@ public:
         {
             Node* to_del = m_header.next;
             m_header.next = to_del->next;
-            destory(to_del);
+            destroy(to_del);
         }
         m_length = 0;
     }
 
-    ~LinksList()
+    ~LinkList()
     {
         clear();
     }
