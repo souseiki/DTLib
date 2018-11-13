@@ -46,7 +46,7 @@ protected:
 
     mutable struct: public Object
     {
-        char reserved[sizeof(T)];
+        char reserved[sizeof(T)];  //char占一个字节，所以用char来创建预留空间
         Node* next;
     } m_header;
 

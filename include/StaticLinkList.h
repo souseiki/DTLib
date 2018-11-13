@@ -27,10 +27,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-// TODO: 
-// 1.new 函数的重载?
-// 2. 应用场景？
-// 3. 测试用例
+
 #ifndef STATICLINKLIST_H
 #define STATICLINKLIST_H
 
@@ -42,8 +39,8 @@ template< typename T, int N >
 class StaticLinkList : public LinkList<T>
 {
 protected:
-    typedef typename LinkList<T>::Node Node;
-    unsigned char m_space[sizeof(Node) * N];
+    typedef typename LinkList<T>::Node Node; 
+    unsigned char m_space[sizeof(Node) * N];  //char占一个字节，所以用char来创建预留空间
     int m_used[N];
 
     struct SNode : public Node
@@ -63,8 +60,8 @@ protected:
         {
             if( !m_used[i])
             {
-                ret = reinterpret_cast<SNode*>(m_space) + i;  //疑问
-                ret = new(ret)SNode(); //疑问2
+                ret = reinterpret_cast<SNode*>(m_space) + i; 
+                ret = new(ret)SNode(); //在预留空间上创建对象，new的一种方式，官方用语placement new
                 m_used[i] = 1;
                 break;
             }

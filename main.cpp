@@ -17,17 +17,16 @@ using namespace DTLib;
 
 int main()
 {
-    LinkList<int> lst;
-    for(int i=0; i< 5; i++)
+    StaticLinkList<int, 5> list;
+    for(int i=0; i<5; i++)
     {
-        lst.insert(0, i);
+        list.insert(0, i);
     }
 
-    for(lst.move(0); !lst.end(); lst.next())
+    for(list.move(0); !list.end(); list.next())
     {
-        cout << lst.current() << endl;
+        cout << list.current() << endl;
     }
-
 
     return 0;
 }
