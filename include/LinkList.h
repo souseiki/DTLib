@@ -112,9 +112,14 @@ public:
         {
             Node* current = position(i); 
             Node* to_del = current->next;
+         
+            if(m_current == to_del)
+            {
+                m_current = to_del->next;
+            }
             current->next = to_del->next;
-            destroy(to_del);
             m_length --;
+            destroy(to_del);
         }
         return ret;
     }
@@ -227,9 +232,10 @@ public:
         {
             Node* to_del = m_header.next;
             m_header.next = to_del->next;
+            m_length --;
             destroy(to_del);
         }
-        m_length = 0;
+        
     }
 
     ~LinkList()
