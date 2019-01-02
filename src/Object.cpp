@@ -8,7 +8,6 @@ namespace DTLib
 {
 void* Object::operator new(size_t size) throw()
 {
-
     return malloc(size);
 }
 
