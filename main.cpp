@@ -9,29 +9,29 @@
 #include "DynamicArray.h"
 #include "LinkList.h"
 #include "StaticLinkList.h"
+#include "CircleList.h"
 
 using namespace std;
 using namespace DTLib;
 
-
-class Test:public Object
+void josephus(int n, int s, int m)
 {
-public:
-    Test()
+    CircleList<int> cl;
+    for(int i=1; i<=n; i++)
     {
-        cout << "Test()" << endl;
+        cl.insert(i);
     }
-    ~Test()
+    cl.move(s-1, m-1);
+    while(cl.length()>0)
     {
-        cout << "~Test()" << endl;
+        cl.next(); 
+        cout << cl.current() << endl;
+        cl.remove(cl.find(cl.current()));
     }
-};
-
+}
 
 int main()
 {
-    SmartPointer<Test> sp = new Test();
-    SmartPointer<Test> spn;
-    spn = sp;
+    josephus(41, 1, 3);
     return 0;
 }
